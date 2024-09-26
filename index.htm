@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Annapurna - Authentic Telugu Cuisine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Telugu&display=swap');
 
@@ -427,9 +428,119 @@
                 display: flex;
             }
         }
+
+        /* Mobile-specific styles */
+        @media screen and (max-width: 768px) {
+          .mobile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: #fff;
+            padding: 0 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+          }
+
+          .menu-icon, .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+          }
+
+          .logo-title {
+            font-family: 'Noto Sans Telugu', sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+          }
+
+          .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #FC8019;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            min-width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          body {
+            padding-top: 60px;
+          }
+
+          nav {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: white;
+            z-index: 999;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          }
+
+          nav ul {
+            list-style-type: none;
+            padding: 0;
+          }
+
+          nav ul li {
+            margin-bottom: 10px;
+          }
+
+          nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+          }
+
+          .carousel {
+            height: 200px;
+          }
+
+          .menu-grid {
+            grid-template-columns: 1fr;
+          }
+
+          /* Hide desktop navigation */
+          nav .container {
+            display: none;
+          }
+        }
+
+        /* Hide mobile header on desktop */
+        @media screen and (min-width: 769px) {
+          .mobile-header {
+            display: none;
+          }
+        }
     </style>
 </head>
 <body>
+    <div class="mobile-header">
+      <div class="menu-icon">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="logo-title">అన్నపూర్ణ</div>
+      <div class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </div>
+    </div>
+
     <nav>
         <div class="container">
             <div class="logo">Annapurna</div>
@@ -466,7 +577,7 @@
                 <h1>Annapurna - Authentic Telugu Cuisine</h1>
                 <p>Experience the rich flavors of Andhra Pradesh and Telangana</p>
                 <div class="telugu-quote">
-                    "అన్నం పరబ్రహ్మ స్వరూపం"
+                    "అన్నం పరబ్రహం స్వరూపం"
                     <div class="translation">"Food is the manifestation of divine energy"</div>
                 </div>
             </div>
@@ -771,6 +882,44 @@
                 // After successful checkout
                 cartSidebar.classList.remove('open');
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+          const menuIcon = document.querySelector('.menu-icon');
+          const cartIcon = document.querySelector('.cart-icon');
+          const cartBadge = document.getElementById('cart-badge');
+
+          // Mobile menu functionality (you'll need to implement this)
+          menuIcon.addEventListener('click', function() {
+            // Toggle mobile menu
+          });
+
+          // Update cart badge
+          function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadge.textContent = totalItems;
+          }
+
+          // Add to cart functionality
+          const addToCartButtons = document.querySelectorAll('.add-to-cart');
+          addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              const id = this.dataset.id;
+              const name = this.dataset.name;
+              const price = parseFloat(this.dataset.price);
+
+              // Add item to cart (implement your cart logic here)
+              // For example:
+              // addToCart(id, name, price);
+
+              updateCartBadge();
+            });
+          });
+
+          // Mobile cart functionality (you'll need to implement this)
+          cartIcon.addEventListener('click', function() {
+            // Show cart modal or navigate to cart page
+          });
         });
     </script>
 </body>
