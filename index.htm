@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annapurna - Authentic Telugu Cuisine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Telugu&display=swap');
+
+        :root {
+            --primary-color: #FC8019;
+            --secondary-color: #60b246;
+            --text-color: #3d4152;
+            --light-text-color: #686b78;
+            --bg-color: #ffffff;
+            --light-bg-color: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        nav {
+            background-color: var(--bg-color);
+            box-shadow: 0 15px 40px -20px rgba(40,44,63,.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        header {
+            background-color: #FFF3E0; /* Light orange background */
+            padding: 3rem 0;
+        }
+
+        .header-container {
+            background: linear-gradient(to right, #FFF3E0, #FFE0B2); /* Gradient from light to slightly darker orange */
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #E65100; /* Darker orange for contrast */
+        }
+
+        header p {
+            color: #F57C00; /* Medium orange for subtitle */
+        }
+
+        .telugu-quote {
+            font-family: 'Noto Sans Telugu', sans-serif;
+            font-size: 1.5rem;
+            color: #FB8C00; /* Slightly darker orange for quote */
+            text-align: center;
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+
+        .telugu-quote .translation {
+            font-size: 1rem;
+            color: #F57C00; /* Medium orange for translation */
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background-color: var(--bg-color);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item-info {
+            padding: 1rem;
+        }
+
+        .menu-item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item-description {
+            color: var(--light-text-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .menu-item-price {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .add-to-cart {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #4fa138;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            overflow-y: auto;
+        }
+
+        .cart-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-cart {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .checkout-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .checkout-btn:hover {
+            background-color: #e67300;
+        }
+
+        #cart-count {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--light-bg-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Adjust this value as needed */
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .carousel-control.prev {
+            left: 10px;
+        }
+
+        .carousel-control.next {
+            right: 10px;
+        }
+
+        #customer-phone {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            nav .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+            .carousel {
+                height: 250px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                margin-bottom: 20px;
+            }
+
+            .telugu-quote {
+                font-size: 1.2rem;
+            }
+
+            .telugu-quote .translation {
+                font-size: 0.9rem;
+            }
+
+            .cart-content {
+                width: 90%;
+                max-width: none;
+                margin: 5% auto;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .carousel {
+                height: 200px;
+            }
+
+            .carousel-control {
+                padding: 5px;
+                font-size: 0.8rem;
+            }
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Annapurna</div>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count">0</span></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container header-container">
+            <div class="carousel">
+                <div class="carousel-item active">
+                    <img src="https://images.pexels.com/photos/3184192/pexels-photo-3184192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Telugu Cuisine 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Telugu Cuisine 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.pexels.com/photos/27976900/pexels-photo-27976900/free-photo-of-a-white-plate-topped-with-pasta-and-shrimp.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Telugu Cuisine 3">
+                </div>
+                <a href="#" class="carousel-control prev">&lt;</a>
+                <a href="#" class="carousel-control next">&gt;</a>
+            </div>
+            <div class="header-content">
+                <h1>Annapurna - Authentic Telugu Cuisine</h1>
+                <p>Experience the rich flavors of Andhra Pradesh and Telangana</p>
+                <div class="telugu-quote">
+                    "అన్నం పరబ్రహ్మ స్వరూపం"
+                    <div class="translation">"Food is the manifestation of divine energy"</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="menu" class="menu-section">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/08/crispy-spicy-chicken-wings.jpg" alt="Hyderabadi Biryani">
+                    <div class="menu-item-info">
+                        <div class="menu-item-name">Hyderabadi Biryani</div>
+                        <div class="menu-item-description">Fragrant basmati rice cooked with tender meat and aromatic spices</div>
+                        <div class="menu-item-actions">
+                            <div class="menu-item-price">₹250</div>
+                            <button class="add-to-cart" data-id="1" data-name="Hyderabadi Biryani" data-price="250">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Andhra Chicken Curry">
+                    <div class="menu-item-info">
+                        <div class="menu-item-name">Andhra Chicken Curry</div>
+                        <div class="menu-item-description">Spicy and tangy chicken curry with a blend of Andhra spices</div>
+                        <div class="menu-item-actions">
+                            <div class="menu-item-price">₹220</div>
+                            <button class="add-to-cart" data-id="2" data-name="Andhra Chicken Curry" data-price="220">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg" alt="Pesarattu">
+                    <div class="menu-item-info">
+                        <div class="menu-item-name">Pesarattu</div>
+                        <div class="menu-item-description">Nutritious green gram dosa served with ginger chutney</div>
+                        <div class="menu-item-actions">
+                            <div class="menu-item-price">₹80</div>
+                            <button class="add-to-cart" data-id="3" data-name="Pesarattu" data-price="80">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/08/grilled-crispy-pork-with-rice.jpg" alt="Gongura Pachadi">
+                    <div class="menu-item-info">
+                        <div class="menu-item-name">Gongura Pachadi</div>
+                        <div class="menu-item-description">Tangy and spicy chutney made from gongura leaves</div>
+                        <div class="menu-item-actions">
+                            <div class="menu-item-price">₹60</div>
+                            <button class="add-to-cart" data-id="4" data-name="Gongura Pachadi" data-price="60">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">About Us</h2>
+            <p>Annapurna brings you the authentic flavors of Telugu cuisine, straight from the heart of Andhra Pradesh and Telangana. Our chefs use traditional recipes and the freshest ingredients to create a memorable dining experience.</p>
+            <div class="telugu-quote">
+                "కడుపు నిండా తిని, మనసు నిండా మాట్లాడు"
+                <div class="translation">"Eat to your heart's content, speak to your mind's content"</div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <p>Phone: (555) 123-4567</p>
+            <p>Email: info@annapurna.com</p>
+            <p>Address: 123 Spice Street, Flavortown, ST 78901</p>
+        </section>
+    </main>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items" class="cart-items"></div>
+            <div id="cart-total" class="cart-total"></div>
+            <input type="tel" id="customer-phone" placeholder="Your phone number" required>
+            <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Annapurna. All rights reserved.</p>
+            <div class="telugu-quote">
+                "అతిథి దేవో భవ"
+                <div class="translation">"The guest is equivalent to God"</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const cartIcon = document.getElementById('cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.querySelector('.close-cart');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCount = document.getElementById('cart-count');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        let cart = [];
+
+        function updateCartCount() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalCount;
+        }
+
+        function updateCartModal() {
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `
+                    <span>${item.name} x${item.quantity}</span>
+                    <span>₹${item.price * item.quantity}</span>
+                `;
+                cartItems.appendChild(itemElement);
+                total += item.price * item.quantity;
+            });
+
+            cartTotal.textContent = `Total: ₹${total}`;
+        }
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseInt(button.getAttribute('data-price'));
+
+                const existingItem = cart.find(item => item.id === id);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ id, name, price, quantity: 1 });
+                }
+
+                updateCartCount();
+            });
+        });
+
+        cartIcon.addEventListener('click', (e) => {
+            e.preventDefault();
+            updateCartModal();
+            cartModal.style.display = 'block';
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            const customerPhone = document.getElementById('customer-phone').value;
+            if (!customerPhone) {
+                alert('Please enter your phone number');
+                return;
+            }
+
+            // Construct the order message
+            let orderMessage = "New order from Annapurna:\n\n";
+            cart.forEach(item => {
+                orderMessage += `${item.name} x${item.quantity} - ₹${item.price * item.quantity}\n`;
+            });
+            orderMessage += `\nTotal: ₹${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}`;
+            orderMessage += `\n\nCustomer Phone: ${customerPhone}`;
+
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(orderMessage);
+
+            // Replace this with the restaurant owner's WhatsApp number
+            const restaurantWhatsApp = "917780616821"; // Format: country code + number
+
+            // Construct the WhatsApp URL
+            const whatsappURL = `https://wa.me/${restaurantWhatsApp}?text=${encodedMessage}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappURL, '_blank');
+
+            // Clear the cart and close the modal
+            cart = [];
+            updateCartCount();
+            cartModal.style.display = 'none';
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const prevBtn = carousel.querySelector('.prev');
+            const nextBtn = carousel.querySelector('.next');
+            let currentIndex = 0;
+
+            function showItem(index) {
+                items.forEach(item => item.classList.remove('active'));
+                items[index].classList.add('active');
+            }
+
+            function nextItem() {
+                currentIndex = (currentIndex + 1) % items.length;
+                showItem(currentIndex);
+            }
+
+            function prevItem() {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                showItem(currentIndex);
+            }
+
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                nextItem();
+            });
+
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                prevItem();
+            });
+
+            // Auto-advance the carousel every 5 seconds
+            setInterval(nextItem, 5000);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navUl = document.querySelector('nav ul');
+
+            hamburger.addEventListener('click', function() {
+                navUl.classList.toggle('show');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const navDrawer = document.getElementById('nav-drawer');
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartSidebar = document.getElementById('cart-sidebar');
+
+            menuIcon.addEventListener('click', function() {
+                navDrawer.classList.toggle('open');
+                if (cartSidebar.classList.contains('open')) {
+                    cartSidebar.classList.remove('open');
+                }
+            });
+
+            cartIcon.addEventListener('click', function() {
+                cartSidebar.classList.toggle('open');
+                if (navDrawer.classList.contains('open')) {
+                    navDrawer.classList.remove('open');
+                }
+                updateCartSidebar();
+            });
+
+            function updateCartSidebar() {
+                const cartItems = document.getElementById('cart-items');
+                const cartTotal = document.getElementById('cart-total');
+                
+                cartItems.innerHTML = '';
+                let total = 0;
+
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('cart-item');
+                    itemElement.innerHTML = `
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>₹${item.price * item.quantity}</span>
+                    `;
+                    cartItems.appendChild(itemElement);
+                    total += item.price * item.quantity;
+                });
+
+                cartTotal.textContent = `Total: ₹${total}`;
+            }
+
+            // Update the existing addToCart function
+            function addToCart(id, name, price) {
+                // ... existing code ...
+                updateCartSidebar();
+            }
+
+            // Update the checkout process
+            const checkoutBtn = document.getElementById('checkout-btn');
+            checkoutBtn.addEventListener('click', () => {
+                const customerPhone = document.getElementById('customer-phone').value;
+                if (!customerPhone) {
+                    alert('Please enter your phone number');
+                    return;
+                }
+
+                // ... rest of the checkout process ...
+
+                // After successful checkout
+                cartSidebar.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
