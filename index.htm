@@ -194,7 +194,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto text-center">
-            <p>&copy; 2024 Annapurna. All rights reserved.</p>
+            <p>&copy; 2025 Annapurna. All rights reserved.</p>
              <div class="telugu-title text-xl text-orange-300 mt-6">
                 "అతిథి దేవో భవ"
                 <p class="text-sm text-gray-400 italic font-sans mt-1">"The guest is equivalent to God"</p>
@@ -423,7 +423,34 @@
             renderMenuItems(filteredItems);
         };
 
-        const handleCheckout = () => { /* ... (remains same) ... */ };
+        const handleCheckout = () => { 
+            if (!elements.phoneInput || !elements.errorEl) return;
+            elements.errorEl.textContent = '';
+            elements.phoneInput.classList.remove('border-red-500');
+            if (cart.length === 0) { elements.errorEl.textContent = 'Your cart is empty.'; return; }
+            if (!elements.phoneInput.value || !/^\d{10}$/.test(elements.phoneInput.value)) {
+                elements.errorEl.textContent = 'Please enter a valid 10-digit phone number.';
+                elements.phoneInput.classList.add('border-red-500'); return;
+            }
+            let orderMessage = "New Order from Annapurna:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                orderMessage += `${item.name} x ${item.quantity} - ₹${itemTotal}\n`; total += itemTotal;
+            });
+            orderMessage += `\n*Total: ₹${total}*\n\nCustomer Phone: ${elements.phoneInput.value}`;
+            const encodedMessage = encodeURIComponent(orderMessage);
+            const restaurantWhatsApp = "917780616821"; 
+            const whatsappURL = `https://wa.me/${restaurantWhatsApp}?text=${encodedMessage}`;
+            try {
+                const newWindow = window.open(whatsappURL, '_blank');
+                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') { throw new Error(); }
+                cart = []; updateAllUI(); toggleModal(elements.cartModal, false);
+            } catch (error) {
+                console.error("Could not open WhatsApp:", error);
+                elements.errorEl.textContent = 'Could not open WhatsApp. Please disable pop-up blockers.';
+            }
+        };
         
         // --- Carousel Logic ---
         const setupCarousel = () => {
