@@ -78,19 +78,17 @@
     </div>
 
     <!-- Desktop Navigation -->
-    <nav id="desktop-nav" class="hidden md:flex bg-white shadow-md sticky top-0 z-30 w-full">
-        <div class="container mx-auto flex justify-between items-center p-4">
-            <h1 class="text-3xl font-bold text-orange-500">Annapurna</h1>
-            <div class="flex items-center space-x-8 text-lg">
-                <a href="#menu" class="text-gray-700 hover:text-orange-500 transition-colors">Menu</a>
-                <a href="#about" class="text-gray-700 hover:text-orange-500 transition-colors">About</a>
-                <a href="#contact" class="text-gray-700 hover:text-orange-500 transition-colors">Contact</a>
-                <button id="cart-icon-desktop" class="relative text-gray-700 hover:text-orange-500 transition-colors flex items-center space-x-2" aria-label="Open cart">
-                    <i class="fas fa-shopping-cart text-2xl"></i>
-                    <span>Cart</span>
-                    <span id="cart-count-desktop" class="bg-orange-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                </button>
-            </div>
+    <nav id="desktop-nav" class="hidden md:flex bg-white shadow-md sticky top-0 z-30 justify-between items-center p-4 container mx-auto">
+        <h1 class="text-3xl font-bold text-orange-500">Annapurna</h1>
+        <div class="flex items-center space-x-8 text-lg">
+            <a href="#menu" class="text-gray-700 hover:text-orange-500 transition-colors">Menu</a>
+            <a href="#about" class="text-gray-700 hover:text-orange-500 transition-colors">About</a>
+            <a href="#contact" class="text-gray-700 hover:text-orange-500 transition-colors">Contact</a>
+            <button id="cart-icon-desktop" class="relative text-gray-700 hover:text-orange-500 transition-colors flex items-center space-x-2" aria-label="Open cart">
+                <i class="fas fa-shopping-cart text-2xl"></i>
+                <span>Cart</span>
+                <span id="cart-count-desktop" class="bg-orange-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </button>
         </div>
     </nav>
 
@@ -137,10 +135,8 @@
              <!-- Text content below carousel -->
             <div class="container mx-auto text-center px-4 pt-8">
                 <h2 class="text-3xl md:text-4xl font-extrabold text-orange-600">
-                    Annapurna 
-                <h4 class="text-xl md:text-2xl font-bold text-orange-602">
-                    Authentic Telugu Cuisine
-                </h4>
+                    Annapurna - Authentic Telugu Cuisine
+                </h2>
                 <p class="text-md md:text-lg text-gray-700 mt-3 max-w-3xl mx-auto">
                     Experience the rich flavors of Andhra Pradesh and Telangana
                 </p>
@@ -196,7 +192,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto text-center">
-            <p>&copy; 2025 Annapurna. All rights reserved.</p>
+            <p>&copy; 2024 Annapurna. All rights reserved.</p>
              <div class="telugu-title text-xl text-orange-300 mt-6">
                 "అతిథి దేవో భవ"
                 <p class="text-sm text-gray-400 italic font-sans mt-1">"The guest is equivalent to God"</p>
@@ -211,6 +207,7 @@
             <h2 class="text-2xl font-bold mb-6">Your Cart</h2>
             <div id="cart-items" class="mb-6 max-h-64 overflow-y-auto"></div>
             <div id="cart-total" class="text-xl font-bold text-right mb-6"></div>
+            <input type="text" id="customer-name" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg mb-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none" required>
             <input type="tel" id="customer-phone" placeholder="Your 10-digit phone number" class="w-full p-3 border border-gray-300 rounded-lg mb-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none" required>
             <div id="checkout-error" class="text-red-500 text-sm text-center mb-2 h-5"></div>
             <button id="checkout-btn" class="w-full bg-orange-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-600 transition-colors text-lg">
@@ -279,20 +276,20 @@
 
         // --- Data ---
         const menuData = [
-            { id: '1', name: 'Hyderabadi Biryani', price: 250, category: 'Biryani', description: 'Fragrant rice with tender meat and spices.', image: 'https://b.zmtcdn.com/data/pictures/chains/4/21164584/16461443d82063b28f100c36b8835807.png' },
-            { id: '2', name: 'Andhra Chicken Curry', price: 220, category: 'Curries', description: 'Spicy and tangy curry with Andhra spices.', image: 'https://www.shutterstock.com/image-photo/homemade-chicken-korma-curry-dish-600nw-699200920.jpg' },
-            { id: '3', name: 'Pesarattu', price: 80, category: 'Tiffins', description: 'Nutritious green gram dosa with ginger chutney.', image: 'https://b2958125.smushcdn.com/2958125/wp-content/uploads/pesarattu.jpg?lossy=1&strip=1&webp=1' },
-            { id: '4', name: 'Gongura Pachadi', price: 60, category: 'Sides', description: 'Tangy and spicy chutney from gongura leaves.', image: 'https://tulasipickles.com/wp-content/uploads/2024/11/Gongura.jpg' },
-            { id: '5', name: 'Mutton Biryani', price: 350, category: 'Biryani', description: 'Rich and flavorful mutton biryani.', image: 'https://b.zmtcdn.com/data/dish_photos/2a7/c15dccaeee91798a7005170a7c9d92a7.jpg' },
-            { id: '6', name: 'Veg Dum Biryani', price: 220, category: 'Biryani', description: 'Aromatic vegetable dum biryani.', image: 'https://t3.ftcdn.net/jpg/12/01/85/96/360_F_1201859641_7YGp6cKX1e9PVCbElNqtEK2VLAguJdtm.jpg' },
-            { id: '7', name: 'Gutti Vankaya Kura', price: 180, category: 'Curries', description: 'Stuffed eggplant curry, a Telugu specialty.', image: 'https://cakeworkorange.com/wp-content/uploads/2020/11/stuffed-brinjal-curry-1-500x500.jpg' },
-            { id: '8', name: 'Royyala Iguru', price: 280, category: 'Curries', description: 'Spicy and thick prawn curry.', image: 'https://www.indianhealthyrecipes.com/wp-content/uploads/2017/11/royyala-iguru-recipe-prawns-curry-500x500.jpg' },
-            { id: '9', name: 'Punugulu', price: 70, category: 'Tiffins', description: 'Deep-fried crispy snack with chutney.', image: 'https://t3.ftcdn.net/jpg/04/43/82/54/360_F_443825456_biaQgzww9RIheo6xg9rtpVolT3GXwJF5.jpg' },
-            { id: '10', name: 'Chicken 65', price: 240, category: 'Starters', description: 'Spicy, deep-fried chicken starter.', image: 'https://media.istockphoto.com/id/1265209311/photo/fried-chicken-kebab-or-kabab.jpg?s=612x612&w=0&k=20&c=cq6fgpRnjpiD3ILifT3bPg2m8EnxtUvG7M8oB-9h1MY=' },
-            { id: '11', name: 'Mirapakaya Bajji', price: 60, category: 'Starters', description: 'Stuffed chilli fritters, a popular snack.', image: 'https://t3.ftcdn.net/jpg/16/10/88/88/360_F_1610888817_DSfrlg2XTr6rspf5xmmAs7n3iZfJzjOU.jpg' },
-            { id: '12', name: 'Ulavacharu', price: 120, category: 'Sides', description: 'Traditional horse gram soup.', image: 'https://www.fiahomefoods.com/uploads/products/ulavacharu-fia_1666271288.jpg' },
-            { id: '13', name: 'Bobbatlu', price: 90, category: 'Desserts', description: 'Sweet flatbread with lentil filling.', image: 'https://www.shutterstock.com/image-photo/puran-poli-known-holige-indian-600nw-781347691.jpg' },
-            { id: '14', name: 'MLA Pesarattu', price: 110, category: 'Tiffins', description: 'Pesarattu with a filling of upma.', image: '' }
+            { id: '1', name: 'Hyderabadi Biryani', price: 250, category: 'Biryani', description: 'Fragrant rice with tender meat and spices.', image: 'https://www.foodiesfeed.com/wp-content/uploads/2023/08/crispy-spicy-chicken-wings.jpg' },
+            { id: '2', name: 'Andhra Chicken Curry', price: 220, category: 'Curries', description: 'Spicy and tangy curry with Andhra spices.', image: 'https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+            { id: '3', name: 'Pesarattu', price: 80, category: 'Tiffins', description: 'Nutritious green gram dosa with ginger chutney.', image: 'https://images.pexels.com/photos/2983101/jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+            { id: '4', name: 'Gongura Pachadi', price: 60, category: 'Sides', description: 'Tangy and spicy chutney from gongura leaves.', image: 'https://www.foodiesfeed.com/wp-content/uploads/2023/08/grilled-crispy-pork-with-rice.jpg' },
+            { id: '5', name: 'Mutton Biryani', price: 350, category: 'Biryani', description: 'Rich and flavorful mutton biryani.', image: 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg' },
+            { id: '6', name: 'Veg Dum Biryani', price: 220, category: 'Biryani', description: 'Aromatic vegetable dum biryani.', image: 'https://images.pexels.com/photos/5410400/pexels-photo-5410400.jpeg' },
+            { id: '7', name: 'Gutti Vankaya Kura', price: 180, category: 'Curries', description: 'Stuffed eggplant curry, a Telugu specialty.', image: 'https://images.pexels.com/photos/725997/pexels-photo-725997.jpeg' },
+            { id: '8', name: 'Royyala Iguru', price: 280, category: 'Curries', description: 'Spicy and thick prawn curry.', image: 'https://images.pexels.com/photos/3535383/pexels-photo-3535383.jpeg' },
+            { id: '9', name: 'Punugulu', price: 70, category: 'Tiffins', description: 'Deep-fried crispy snack with chutney.', image: 'https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg' },
+            { id: '10', name: 'Chicken 65', price: 240, category: 'Starters', description: 'Spicy, deep-fried chicken starter.', image: 'https://images.pexels.com/photos/106344/pexels-photo-106344.jpeg' },
+            { id: '11', name: 'Mirapakaya Bajji', price: 60, category: 'Starters', description: 'Stuffed chilli fritters, a popular snack.', image: 'https://images.pexels.com/photos/1484676/pexels-photo-1484676.jpeg' },
+            { id: '12', name: 'Ulavacharu', price: 120, category: 'Sides', description: 'Traditional horse gram soup.', image: 'https://images.pexels.com/photos/1352270/pexels-photo-1352270.jpeg' },
+            { id: '13', name: 'Bobbatlu', price: 90, category: 'Desserts', description: 'Sweet flatbread with lentil filling.', image: 'https://images.pexels.com/photos/2373520/pexels-photo-2373520.jpeg' },
+            { id: '14', name: 'MLA Pesarattu', price: 110, category: 'Tiffins', description: 'Pesarattu with a filling of upma.', image: 'https://images.pexels.com/photos/2983101/jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }
         ];
         const categories = ['All', 'Starters', 'Biryani', 'Curries', 'Tiffins', 'Sides', 'Desserts'];
 
@@ -308,7 +305,8 @@
             checkoutBtn: getEl('checkout-btn'), menuIcon: getEl('menu-icon'),
             navDrawerContainer: getEl('nav-drawer-container'), navDrawer: getEl('nav-drawer'),
             closeNav: getEl('close-nav'), drawerOverlay: getEl('drawer-overlay'),
-            navLinks: document.querySelectorAll('.nav-link'), phoneInput: getEl('customer-phone'), errorEl: getEl('checkout-error'),
+            navLinks: document.querySelectorAll('.nav-link'), 
+            customerName: getEl('customer-name'), phoneInput: getEl('customer-phone'), errorEl: getEl('checkout-error'),
             // Carousel Elements
             heroCarousel: getEl('hero-carousel'), carouselTrack: getEl('carousel-track'),
             carouselPrev: getEl('carousel-prev'), carouselNext: getEl('carousel-next'),
@@ -435,32 +433,70 @@
             renderMenuItems(filteredItems);
         };
 
-        const handleCheckout = () => { 
-            if (!elements.phoneInput || !elements.errorEl) return;
-            elements.errorEl.textContent = '';
-            elements.phoneInput.classList.remove('border-red-500');
-            if (cart.length === 0) { elements.errorEl.textContent = 'Your cart is empty.'; return; }
-            if (!elements.phoneInput.value || !/^\d{10}$/.test(elements.phoneInput.value)) {
-                elements.errorEl.textContent = 'Please enter a valid 10-digit phone number.';
-                elements.phoneInput.classList.add('border-red-500'); return;
-            }
-            let orderMessage = "New Order from Annapurna:\n\n";
-            let total = 0;
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                orderMessage += `${item.name} x ${item.quantity} - ₹${itemTotal}\n`; total += itemTotal;
-            });
-            orderMessage += `\n*Total: ₹${total}*\n\nCustomer Phone: ${elements.phoneInput.value}`;
-            const encodedMessage = encodeURIComponent(orderMessage);
-            const restaurantWhatsApp = "917780616821"; 
+        const sendToWhatsApp = (message) => {
+            const encodedMessage = encodeURIComponent(message);
+            const restaurantWhatsApp = "917780616821";
             const whatsappURL = `https://wa.me/${restaurantWhatsApp}?text=${encodedMessage}`;
             try {
                 const newWindow = window.open(whatsappURL, '_blank');
-                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') { throw new Error(); }
+                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') { throw new Error("Pop-up blocked"); }
                 cart = []; updateAllUI(); toggleModal(elements.cartModal, false);
             } catch (error) {
                 console.error("Could not open WhatsApp:", error);
-                elements.errorEl.textContent = 'Could not open WhatsApp. Please disable pop-up blockers.';
+                if (elements.errorEl) elements.errorEl.textContent = 'Could not open WhatsApp. Please disable pop-up blockers.';
+            } finally {
+                if (elements.checkoutBtn) {
+                    elements.checkoutBtn.disabled = false;
+                    elements.checkoutBtn.innerHTML = 'Order on WhatsApp';
+                }
+            }
+        };
+
+        const handleCheckout = () => {
+            const { customerName, phoneInput, errorEl, checkoutBtn } = elements;
+            if (!phoneInput || !errorEl || !customerName) return;
+
+            errorEl.textContent = '';
+            phoneInput.classList.remove('border-red-500');
+            customerName.classList.remove('border-red-500');
+
+            const name = customerName.value.trim();
+            const phone = phoneInput.value.trim();
+
+            if (!name) { errorEl.textContent = 'Please enter your name.'; customerName.classList.add('border-red-500'); return; }
+            if (!phone || !/^\d{10}$/.test(phone)) { errorEl.textContent = 'Please enter a valid 10-digit phone number.'; phoneInput.classList.add('border-red-500'); return; }
+            if (cart.length === 0) { errorEl.textContent = 'Your cart is empty.'; return; }
+
+            checkoutBtn.disabled = true;
+            checkoutBtn.innerHTML = '<div class="loader mx-auto" style="width: 28px; height: 28px; border-top-color: white;"></div>';
+
+            let orderMessage = `New Order from Annapurna:\n\n*Customer Name:* ${name}\n*Phone:* ${phone}\n\n*Order Details:*\n`;
+            let total = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                orderMessage += `- ${item.name} x ${item.quantity} = ₹${itemTotal}\n`; total += itemTotal;
+            });
+            orderMessage += `\n*Total Amount: ₹${total}*`;
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const mapsLink = `https://maps.google.com/?q=${latitude},${longitude}`;
+                        orderMessage += `\n\n*Location:* ${mapsLink}`;
+                        sendToWhatsApp(orderMessage);
+                    },
+                    (error) => {
+                        console.warn(`Could not get location: ${error.message}`);
+                        orderMessage += `\n\n*Location:* Not provided by user.`;
+                        sendToWhatsApp(orderMessage);
+                    },
+                    { timeout: 10000 }
+                );
+            } else {
+                console.warn("Geolocation is not supported.");
+                orderMessage += `\n\n*Location:* Not supported by browser.`;
+                sendToWhatsApp(orderMessage);
             }
         };
         
