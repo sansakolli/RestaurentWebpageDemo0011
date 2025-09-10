@@ -77,6 +77,7 @@
         </div>
     </div>
 
+    <!-- Desktop Navigation -->
     <nav id="desktop-nav" class="hidden md:flex bg-white shadow-md sticky top-0 z-30 w-full">
         <div class="container mx-auto flex justify-between items-center p-4">
             <h1 class="text-3xl font-bold text-orange-500">Annapurna</h1>
@@ -148,7 +149,7 @@
                     <p class="text-base text-gray-500 italic font-sans mt-1">"Food is the manifestation of divine energy"</p>
                 </div>
                 <button id="open-ai-chef-btn" class="mt-8 bg-orange-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-600 transition-all duration-300 text-lg shadow-xl transform hover:scale-105">
-                    ✨ Ask AI Chef
+                    ✨ AI చెఫ్‌ని అడగండి
                 </button>
             </div>
         </section>
@@ -223,12 +224,12 @@
     <div id="ai-chef-modal" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden flex items-center justify-center">
         <div class="bg-white rounded-lg shadow-2xl w-11/12 md:w-1/2 lg:w-1/3 p-6 modal-fade-in relative">
             <button id="close-ai-chef-modal" class="absolute top-4 right-4 text-2xl text-gray-500 hover:text-gray-800" aria-label="Close AI Chef">&times;</button>
-            <h2 class="text-2xl font-bold mb-6">✨ Ask Our AI Chef</h2>
-            <p class="text-gray-600 mb-4">Tell us your preferences, and our AI will suggest a perfect meal for you!</p>
+            <h2 class="text-2xl font-bold mb-6">✨ మా AI చెఫ్‌ని అడగండి</h2>
+            <p class="text-gray-600 mb-4">మీకు ఇష్టమైనవి మాకు చెప్పండి, మా AI మీకు సరైన భోజనాన్ని సూచిస్తుంది!</p>
             
             <div id="ai-chef-form">
                 <div class="mb-4">
-                    <label for="people-count" class="block text-sm font-medium text-gray-700">How many people?</label>
+                    <label for="people-count" class="block text-sm font-medium text-gray-700">ఎంత మంది?</label>
                     <select id="people-count" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
                         <option>1</option>
                         <option>2</option>
@@ -237,35 +238,35 @@
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label for="diet-pref" class="block text-sm font-medium text-gray-700">Dietary Preference</label>
+                    <label for="diet-pref" class="block text-sm font-medium text-gray-700">ఆహార ప్రాధాన్యత</label>
                     <select id="diet-pref" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                        <option>Any</option>
-                        <option>Vegetarian</option>
-                        <option>Non-Vegetarian</option>
+                        <option>ఏదైనా</option>
+                        <option>శాఖాహారం</option>
+                        <option>మాంసాహారం</option>
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label for="spice-level" class="block text-sm font-medium text-gray-700">Spice Level</label>
+                    <label for="spice-level" class="block text-sm font-medium text-gray-700">కారం స్థాయి</label>
                     <select id="spice-level" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                        <option>Mild</option>
-                        <option>Medium</option>
-                        <option>Spicy</option>
+                        <option>తక్కువ</option>
+                        <option>మధ్యస్థం</option>
+                        <option>ఎక్కువ</option>
                     </select>
                 </div>
                 <button id="get-recommendation-btn" class="w-full bg-orange-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-600 transition-colors text-lg mt-2">
-                    Get Recommendation
+                    సూచన పొందండి
                 </button>
             </div>
             
             <div id="ai-chef-result" class="hidden">
-                <h3 class="text-xl font-semibold mb-2">Chef's Suggestion:</h3>
+                <h3 class="text-xl font-semibold mb-2">చెఫ్ సూచన:</h3>
                 <div id="ai-recommendation-text" class="text-gray-700 bg-orange-50 p-4 rounded-lg mb-4"></div>
-                <button id="add-combo-to-cart-btn" class="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors text-lg">Add to Cart</button>
-                <button id="ask-again-btn" class="w-full mt-2 text-sm text-gray-600 hover:text-orange-500">Ask Again</button>
+                <button id="add-combo-to-cart-btn" class="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors text-lg">కార్ట్‌కు జోడించండి</button>
+                <button id="ask-again-btn" class="w-full mt-2 text-sm text-gray-600 hover:text-orange-500">మళ్లీ అడగండి</button>
             </div>
              <div id="ai-chef-loader" class="hidden flex-col items-center justify-center py-8">
                 <div class="loader"></div>
-                <p class="mt-4 text-gray-600">Our chef is thinking...</p>
+                <p class="mt-4 text-gray-600">మా చెఫ్ ఆలోచిస్తున్నారు...</p>
             </div>
         </div>
     </div>
@@ -473,7 +474,7 @@
             checkoutBtn.disabled = true;
             checkoutBtn.innerHTML = '<div class="loader mx-auto" style="width: 28px; height: 28px; border-top-color: white;"></div>';
 
-            let orderMessage = `New Order from Annapurna:\n\n*Customer Name:* ${name}\n*Phone:* ${phone}\n\n*Order Details:*\n`;
+            let orderMessage = `New Order from ${name} for Annapurna:\n\n*Customer Name:* ${name}\n*Phone:* ${phone}\n\n*Order Details:*\n`;
             let total = 0;
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
@@ -555,9 +556,90 @@
         };
 
         // --- Gemini API Function ---
-        const handleAiChefRecommendation = async () => { /* ... (remains same) ... */ };
-        const handleAddComboToCart = () => { /* ... (remains same) ... */ };
-        const resetAiChef = () => { /* ... (remains same) ... */ };
+        const handleAiChefRecommendation = async () => {
+             const people = getEl('people-count').value;
+            const diet = getEl('diet-pref').value;
+            const spice = getEl('spice-level').value;
+
+            elements.aiChefForm.classList.add('hidden');
+            elements.aiChefLoader.classList.remove('hidden');
+            elements.aiChefLoader.classList.add('flex');
+            
+            const menuString = menuData.map(item => `- ${item.name} (Price: ₹${item.price}, Tags: ${item.category})`).join('\n');
+            const userPrompt = `You are an expert chef at 'Annapurna', an authentic Telugu restaurant. Your task is to recommend a complete meal for a customer based on their preferences. Respond in Telugu.
+
+Here is our menu:
+${menuString}
+
+Here are the customer's preferences:
+- Number of People: ${people}
+- Diet: ${diet}
+- Spice Level: ${spice}
+
+Based on this, suggest a suitable and delicious meal combination from the menu. Your response MUST be in two parts. First, a short, friendly, and appealing paragraph describing the meal in Telugu (max 3 sentences). Second, on a new line, write "ITEMS:" followed by a comma-separated list of ONLY the item names you are recommending. For example: "ITEMS: Hyderabadi Biryani, Gongura Pachadi"`;
+            
+            const apiKey = ""; // API Key will be injected by the environment.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }] })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                const text = result.candidates[0].content.parts[0].text;
+                
+                const parts = text.split('ITEMS:');
+                const description = parts[0].trim();
+                const itemsStr = parts[1] ? parts[1].trim() : '';
+
+                recommendedItems = itemsStr.split(',').map(name => name.trim()).filter(Boolean);
+                
+                elements.aiRecommendationText.innerText = description;
+                elements.aiChefLoader.classList.add('hidden');
+                elements.aiChefLoader.classList.remove('flex');
+                elements.aiChefResult.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error fetching AI recommendation:", error);
+                elements.aiChefLoader.classList.add('hidden');
+                elements.aiChefLoader.classList.remove('flex');
+                elements.aiChefResult.classList.remove('hidden');
+                elements.aiRecommendationText.innerText = 'క్షమించండి, మా AI చెఫ్ ప్రస్తుతం బిజీగా ఉన్నారు. దయచేసి కాసేపటి తర్వాత మళ్లీ ప్రయత్నించండి.';
+                elements.addComboToCartBtn.classList.add('hidden');
+            }
+        };
+
+        const handleAddComboToCart = () => {
+            recommendedItems.forEach(itemName => {
+                const menuItem = menuData.find(item => item.name.toLowerCase() === itemName.toLowerCase());
+                if (menuItem) {
+                    const existingItem = cart.find(item => item.id === menuItem.id);
+                    if (existingItem) { existingItem.quantity++; } 
+                    else { cart.push({ ...menuItem, quantity: 1 }); }
+                }
+            });
+            updateAllUI();
+            toggleModal(elements.aiChefModal, false);
+            // Reset AI Chef modal for next time
+            setTimeout(() => {
+                elements.aiChefResult.classList.add('hidden');
+                elements.aiChefForm.classList.remove('hidden');
+                elements.addComboToCartBtn.classList.remove('hidden');
+            }, 500);
+        };
+        
+        const resetAiChef = () => {
+            elements.aiChefResult.classList.add('hidden');
+            elements.aiChefForm.classList.remove('hidden');
+            elements.addComboToCartBtn.classList.remove('hidden');
+        };
         
         // --- Event Listeners Setup ---
         const setupEventListeners = () => {
@@ -574,7 +656,15 @@
             if (elements.drawerOverlay) elements.drawerOverlay.addEventListener('click', () => toggleNavDrawer(false));
             elements.navLinks.forEach(link => link.addEventListener('click', () => toggleNavDrawer(false)));
 
-            // AI Chef Listeners (remains same)
+            // AI Chef Listeners
+            if (elements.openAiChefBtn) elements.openAiChefBtn.addEventListener('click', () => toggleModal(elements.aiChefModal, true));
+            if (elements.closeAiChefModal) elements.closeAiChefModal.addEventListener('click', () => {
+                toggleModal(elements.aiChefModal, false);
+                setTimeout(resetAiChef, 500);
+            });
+            if (elements.getRecommendationBtn) elements.getRecommendationBtn.addEventListener('click', handleAiChefRecommendation);
+            if (elements.addComboToCartBtn) elements.addComboToCartBtn.addEventListener('click', handleAddComboToCart);
+            if (elements.askAgainBtn) elements.askAgainBtn.addEventListener('click', resetAiChef);
         };
 
         // --- Initialize ---
